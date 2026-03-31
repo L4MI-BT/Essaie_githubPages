@@ -1,9 +1,16 @@
 name: Github Pages
-
 on: push
 jobs:
   my-job:
-   runs-on: ubuntu-latest
-   steps:
-   - name: GitHub Pages
-     uses: crazy-max/ghaction-github-pages@v5.0.0
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v5.0.0
+        with:
+          target_branch: gh-pages
+          build_dir: ./dist  # ← adapte selon ton projet
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
